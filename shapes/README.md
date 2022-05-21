@@ -26,7 +26,7 @@ The resulting is nearly 116 MB, because it has a relatively high resolution.
 
 ## Pre-processing
 
-Then we need to get the summarization of the data. This is 
+Then we need to get the summarization of the data, because you have to understand your data before plotting. The following is based on *bash command*, and you can also use any other tools/languages (e.g., `pandas` in Python).
 
 ```bash
 # First line (filed names)
@@ -86,10 +86,10 @@ Since both Hawaii and Alaska are located differently, it would be nice to place 
 ## Convert to Txt
 
 ```bash
-python3 output.csv --name=STATE --last Hawaii Alaska --filter "Virgin Islands" Mariana Samoa Rico Guam Columbia
+python3 usa.csv --name=STATE --last Hawaii Alaska --filter "Virgin Islands" Mariana Samoa Rico Guam Columbia
 ```
 
-Note that the `--filter` option is to filter rows whose region name *contains* those names; and `--last` option is to put both Hawaii and Alaska at the end of the result.
+This command would convert csv file to txt (`out.txt`) for gnuplot. Note that the `--filter` option is to filter rows whose region name *contains* those names; and `--last` option is to put both Hawaii and Alaska at the end of the result.
 
 ## Plot
 
