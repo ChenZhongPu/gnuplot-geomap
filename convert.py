@@ -15,23 +15,40 @@ def polygon2lines(polygon: str):
     return points.replace(',', '\n')
 
 
-def convert(csv_name, region_polygon, region_name, extra_output, output):
+def convert(csv_name, region_polygon, region_name, extra_output, output, filter_list,
+            last_list):
     df = pd.read_csv(csv_name)
     df = df[[region_polygon, region_name]]
     df = df.dropna(subset=[region_name])
+    for f_name in filter_list:
+        df.drop(df.index[df[region_name].str.contains(f_name)], inplace=True)
     print(f'Total regions: {len(df)}')
+
+    lasts = []
+    for last_name in last_list:
+        lasts.append(df.index[df[region_name].str.contains(last_name)].tolist()[0])
+
     with open(output, 'w') as f:
-        for _, row in df.iterrows():
-            wkt = str(row[region_polygon])
-            name = str(row[region_name])
+        def write(_row):
+            wkt = str(_row[region_polygon])
+            name = str(_row[region_name])
             if extra_output:
                 print(name)
             f.write(f'#{name}\n')
-            if 'MULTI' in wkt:
+            if 'MULTIPOLYGON' in wkt:
                 f.write(multipolygon2lines(wkt))
             else:
                 f.write(polygon2lines(wkt))
             f.write('\n\n\n')
+
+        for i, row in df.iterrows():
+            if i not in lasts:
+                write(row)
+        # write lasts
+        for i, row in df.iterrows():
+            if i in lasts:
+                write(row)
+
 
 
 if __name__ == '__main__':
@@ -43,9 +60,12 @@ if __name__ == '__main__':
                         default='WKT')
     parser.add_argument('-n', '--name', type=str, help='filed name for region names',
                         required=True)
-    parser.add_argument("-o2", '--out2', action='store_true',
+    parser.add_argument("-e", '--echo', action='store_true',
                         help='print regions names')
+    parser.add_argument('-f', '--filter', nargs='+', default=[], help='filter regions names')
+    parser.add_argument('-l', '--last', nargs='+', default=[], help='last region names')
 
     args = parser.parse_args()
 
-    convert(args.csv, args.region, args.name, args.out2, args.out)
+    convert(args.csv, args.region, args.name,
+            args.echo, args.out, args.filter, args.last)
