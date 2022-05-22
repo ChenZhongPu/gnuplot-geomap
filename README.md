@@ -80,3 +80,6 @@ The complete code can be found at `gnuplot/china1.pg`.
 The complete code can be found at `gnuplot/china2.pg`.
 
 ![china2](gnuplot/china2.svg)
+
+### Projects using this repository
+- [Color scales](https://chenzhongpu.github.io/gnuplot/fundamental/color.html)
