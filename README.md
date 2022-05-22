@@ -35,6 +35,12 @@ First, you need to install [gdal](https://www.gdal.org/), and we are going to us
 ogr2ogr -f CSV <output.csv> <input.shp> -lco GEOMETRY=AS_WKT
 ```
 
+You can also use this utility script `shape2csv.sh`:
+
+```bash
+./shape2csv.sh -o output -i input
+```
+
 ### Convert CSV to Txt
 
 The Python script `convert.py` relies on `pandas`.
@@ -80,6 +86,12 @@ The complete code can be found at `gnuplot/china1.pg`.
 The complete code can be found at `gnuplot/china2.pg`.
 
 ![china2](gnuplot/china2.svg)
+
+### Taiwan Map
+
+The complete code can be found at `gnuplot/taiwan.pg`, and the original shape file is downloaded from [MIT GeoWeb](https://geodata.mit.edu/catalog/stanford-fn648mm8787).
+
+![taiwan](gnuplot/taiwan.svg)
 
 ### Projects using this repository
 - [Color scales](https://chenzhongpu.github.io/gnuplot/fundamental/color.html)

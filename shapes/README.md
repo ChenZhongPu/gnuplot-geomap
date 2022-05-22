@@ -22,6 +22,12 @@ There are many shapes files available on the Internet. As for the USA map, you c
 ogr2ogr -f CSV usa.csv state.shp -lco GEOMETRY=AS_WKT
 ```
 
+or
+
+```bash
+./shape2csv.sh -o usa -i state
+```
+
 The resulting is nearly 116 MB, because it has a relatively high resolution.
 
 ## Pre-processing
@@ -86,7 +92,7 @@ Since both Hawaii and Alaska are located differently, it would be nice to place 
 ## Convert to Txt
 
 ```bash
-python3 usa.csv --name=STATE --last Hawaii Alaska --filter "Virgin Islands" Mariana Samoa Rico Guam Columbia
+python3 convert.py usa.csv --name=STATE --last Hawaii Alaska --filter "Virgin Islands" Mariana Samoa Rico Guam Columbia
 ```
 
 This command would convert csv file to txt (`out.txt`) for gnuplot. Note that the `--filter` option is to filter rows whose region name *contains* those names; and `--last` option is to put both Hawaii and Alaska at the end of the result.
