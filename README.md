@@ -1,7 +1,7 @@
 # A gunplot-friendly tool for GeoMap
 This project is inspired by the script [shape2txt](http://www.gnuplotting.org/code/shape2txt), and it is aimed to create simply txt file from shapes files for the ease of use in gnuplot.
 
-Users can also download your interested results in `data` folder directly if they are available.
+Users can also download your interested results from [https://zhongpu.info/data/gnuplot-geomap/] (served on *DropBox*) directly if they are available.
 
 ## Motivation
 Unlike other plotting alternatives (e.g., `ggplot2`), gnuplot does not provide built-in tools for GeoMap. Therefore, we need to prepare a *polygon* files manually.
@@ -87,11 +87,11 @@ The complete code can be found at `gnuplot/china2.pg`.
 
 ![china2](gnuplot/china2.svg)
 
-### Taiwan Map
+<!-- ### Taiwan Map
 
 The complete code can be found at `gnuplot/taiwan.pg`, and the original shape file is downloaded from [MIT GeoWeb](https://geodata.mit.edu/catalog/stanford-fn648mm8787).
 
-![taiwan](gnuplot/taiwan.svg)
+![taiwan](gnuplot/taiwan.svg) -->
 
 ### Projects using this repository
 - [Color scales](https://chenzhongpu.github.io/gnuplot/fundamental/color.html)
